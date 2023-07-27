@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <iostream>
 #define ll long long
 using namespace std;
 void solve()
@@ -28,7 +28,7 @@ void solve()
     }
     else
     {
-        cout << "YES" << endl;
+        cout << "Yes" << endl;
     }
 
 }
