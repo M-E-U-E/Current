@@ -1,23 +1,24 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 #define ll long long
 using namespace std;
-void solve()
+
+int main()
 {
     char c[111111];
     cin >> c;
     ll pos = -1;
     ll n = strlen(c);
-    for(int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
-        if(c[i]=='0')
+        if (c[i] == '0')
         {
             pos = i;
             break;
         }
     }
-    if(pos==-1)
+    if (pos == -1)
     {
-        for(int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
         {
             cout << c[i];
         }
@@ -25,9 +26,9 @@ void solve()
     }
     else
     {
-        for(int i=0; i<n; i++)
+        for (int i = 0; i < n; i++)
         {
-            if(i==pos)
+            if (i == pos)
             {
                 continue;
             }
@@ -38,24 +39,5 @@ void solve()
         }
         cout << endl;
     }
-
-}
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-//    ll t;
-//    cin >> t;
-//    while(t--)
-    {
-        solve();
-
-    }
     return 0;
 }
-
-
-
-
-
