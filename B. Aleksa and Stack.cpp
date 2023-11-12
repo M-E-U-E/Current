@@ -14,10 +14,10 @@ bool cmp(pair<int,int>a,pair<int,int> b)
 void solve()
 {
 
-   ll n;
-   cin >> n;
+   ll x;
+   cin >> x;
    ll p=1;
-   for(int i=0; i<n; i++)
+   for(int i=0; i<x; i++)
    {
        cout << p << " ";
        p+=2;
