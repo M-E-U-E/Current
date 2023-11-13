@@ -18,8 +18,9 @@ void solve()
     if((k*(k+1))/2>x || ((2*n-k+1)*k)/2<x)
     {
         cout << "NO" << endl;
+        return;
     }
-    else
+//    else
     {
         cout << "YES" << endl;
     }
