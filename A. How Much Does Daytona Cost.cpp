@@ -21,7 +21,10 @@ void solve()
     for(int i=0; i<n; i++)
     {
         cin >> a[i];
-        if(a[i]==x)f=1;
+        if(a[i]==x)
+        {
+            f=1;
+        }
     }
     if(!f)
     {
