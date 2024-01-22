@@ -26,7 +26,7 @@ void solve()
     for(int i=0; i<n; i++)
     {
         a[i]-=sum;
-        sum+=a[i]
+        sum+=a[i];
     }
     for(int i=0; i<n; i++)
     {
