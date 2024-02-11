@@ -16,6 +16,7 @@ void solve()
     ll n;
     cin >> n;
     ll a[n+6];
+    //10th feb miss
     for(int i=0; i<n; i++)
     {
         cin >> a[i];
