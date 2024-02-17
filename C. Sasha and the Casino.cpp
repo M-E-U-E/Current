@@ -1,38 +1,51 @@
-#include <iostream>
-#include <vector>
-#include <string>
-
+#include<bits/stdc++.h>
+#define ll long long
+#define endl "\n"
 using namespace std;
-
-bool canWin(int k, int x, int a) {
-    if (k == 1) {
+bool cmp(pair<int,int>a,pair<int,int> b)
+{
+    if(a.first > b.first)
         return true;
-    }
-    if (x == 1) {
-        return a >= k;
-    }
-    vector<bool> dp(a + 1, false);
-    dp[0] = true;
-    for (int i = 1; i <= k; ++i) {
-        for (int j = max(0, i - k + 1); j <= a; ++j) {
-            dp[j] = dp[j] || dp[j - i];
-        }
-    }
-    for (int i = 0; i <= x; ++i) {
-        if (dp[a - i * k]) {
-            return true;
-        }
-    }
+    else if(a.first == b.first and a.second<b.second)
+        return true;
+
     return false;
 }
-
-int main() {
-    int t;
+void solve()
+{
+    ll k, x, a;
+    cin >> k >> x >> a;
+    ll sum=0, flag=0;
+    for(int i=0; i<=x; i++)
+    {
+        ll p = 1+(sum/(k-1));
+        sum += p;
+        if(sum>a)
+        {
+            flag=1;
+        }
+    }
+    if(flag)
+    {
+        cout << "NO" << endl;
+    }
+    else
+    {
+        cout << "YES" << endl;
+    }
+}
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    ll t;
     cin >> t;
-    while (t--) {
-        int k, x, a;
-        cin >> k >> x >> a;
-        cout << (canWin(k, x, a) ? "YES" : "NO") << endl;
+    while(t--)
+    {
+        solve();
+
     }
     return 0;
 }
+
