@@ -11,14 +11,70 @@ bool cmp(pair<int,int>a,pair<int,int> b)
 
     return false;
 }
-bool isPrime(int n) {
-    if (n < 2) {
-        return false;
+//vector<ll>v;
+//void primeFactors(ll n)
+//{
+//    // Print the number of 2s that divide n
+//    while (n % 2 == 0)
+//    {
+//        v.push_back(2);
+//        n = n/2;
+//    }
+//
+//    // n must be odd at this point. So we can skip
+//    // one element (Note i = i +2)
+//    for (ll i = 3; i*i<=n; i = i + 2)
+//    {
+//        // While i divides n, print i and divide n
+//        while (n % i == 0)
+//        {
+//            // cout<<i<<ss;
+//            v.push_back(i);
+//            n = n/i;
+//        }
+//    }
+//
+//    // This condition is to handle the case when n
+//    // is a prime number greater than 2
+//    if (n > 2)
+//        v.push_back(n);
+//}
+const int N = 1e5+10;
+bitset <N> vis;
+void sieve (void)
+{
+    for (int i = 2; i * i < N; ++i)
+    {
+        if (!vis[i])
+        {
+            for (int j = i * i; j < N; j += i) vis[j] = 1;
+        }
     }
-    int sqrt_n = sqrt(n);
-    for (int i = 2; i <= sqrt_n; i++) {
-        if (n % i == 0) {
-            return false;
+}
+bool Possible(vector<ll> a,ll n,ll k)
+{
+    multiset<ll> s;
+    for(auto i:a)
+    {
+        s.insert(i);
+    }
+
+    for(int i=1; i<=k; i++)
+    {
+        if(s.empty())return false;
+        ll req=k-i+1;
+        auto ii=s.upper_bound(req);
+        if(ii==s.begin())return false;
+        ii--;
+
+        s.erase(ii);
+        if(!s.empty())
+        {
+            ii=s.begin();
+            ll v=(*ii);
+            v+=(req);
+            s.erase(ii);
+            s.insert(v);
         }
     }
     return true;
@@ -27,39 +83,27 @@ void solve()
 {
     ll n;
     cin >> n;
-    string s1 = "Ashishgup";
-    string s2 = "FastestFinger";
-    if(n==1)
+    vector<ll> a(n);
+    for(int i=0; i<n; i++)
     {
-        cout << s2 << endl;
+        cin >> a[i];
     }
-    else if(n==2)
+    ll k;
+    ll low=0, high=n;
+    while(low<=high)
     {
-        cout << s1 << endl;
-    }
-    else if(n>2 && n%2==1)
-    {
-        cout << s1 << endl;
-    }
-    else
-    {
-        if((n&(n-1))==0)
+        int mid=low+(high-low)/2;
+        if(Possible(a,n,mid))
         {
-            cout << s2 << endl;
-        }
-        else if(n%4==0)
-        {
-            cout << s1 << endl;
-        }
-        else if(isPrime(n/2))
-        {
-            cout << s2 << endl;
+            k=mid;
+            low=mid+1;
         }
         else
         {
-            cout << s1 << endl;
+            high=mid-1;
         }
     }
+    cout << k << endl;
 }
 int main()
 {
