@@ -51,41 +51,45 @@ void sieve (void)
         }
     }
 }
-bool check(ll l, ll r, ll x, ll m)
+ll solver(int first,int len)
 {
-    ll lf = 0, rg = 0, res = 0;
-    lf = rg = (x * (x - 1)) / 2;
-    if (x > 1) lf -= ((x - 1) * (x - 1)) / 2;
-    else lf += (1 - x + 1);
+	ll here=0;
 
-    if (x > r) rg -= ((x - r - 1) * (x - r)) / 2;
-    else rg += (r - x + 1);
-
-    res = x + lf + rg;
-    return res <= m;
+	for (int i=1;i<=len;i++)
+	{
+		if (first==1)
+		{
+			here+=len-i+1;
+			return here;
+		}
+		here+=first;
+		first-=1;
+		if (here>2e9)
+			return here;
+	}
+	return here;
 }
 void solve()
 {
     ll n, m, k;
     cin >> n >> m >> k;
-    ll l = k - 1;
-    ll r = n - k;
-    ll ans = 0;
-    ll low = 1, high = m;
-    while (low <= high)
+    ll l = 1;
+    ll r = m;
+    while (l<r)
     {
-        ll mid = low + (high - low) / 2;
-        if (check(l, r, mid, m))
+        ll mid=l+r+1;
+        mid/=2;
+        ll here=solver(mid,k)+solver(mid,n-k+1)-mid;
+        if(here>m)
         {
-            ans = mid;
-            low = mid + 1;
+            r=mid-1;
         }
         else
         {
-            high = mid - 1;
+            l=mid;
         }
     }
-    cout << ans << endl;
+    cout<<l<<endl;
 }
 int main()
 {
